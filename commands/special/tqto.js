@@ -17,6 +17,8 @@ exports.run = {
 let info = () => {
    return `*BIG THANKS TO*
 
+➠ armand 
+
 ➠ wildan Izzuddin  
 
 ➠ acuy
