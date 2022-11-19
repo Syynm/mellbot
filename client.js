@@ -10,7 +10,7 @@ global.Func = new Function
 const { Scraper } = require('./system/scraper')
 global.scrap = new Scraper
 const { NeoxrApi } = require('./system/neoxrApi')
-global.Api = new NeoxrApi('melbotvip')
+global.Api = new NeoxrApi('pelerfaruq')
 global.store = makeInMemoryStore({
    logger: pino().child({
       level: 'silent',
@@ -147,15 +147,15 @@ const connect = async () => {
       let meta = await (await client.groupMetadata(gc.id))
       let member = gc.participants[0]
       let textwel = Func.texted('bold', `Welcome +tag to +grup.`)
-      let textleft = Func.texted('bold', `+tag Sayonara`)
+      let textleft = Func.texted('bold', `+tag Sayonara anjing`)
       let readmore = String.fromCharCode(8206).repeat(4001)
       let deskripsi = await (await client.groupMetadata(gc.id)).desc.toString()
       let groupSet = global.db.groups[gc.id]
       let prefixes = global.db.setting.multiprefix ? global.db.setting.prefix[0] : global.db.setting.onlyprefix
       let buttons = [{
-         buttonId: `.ginfo`,
+         buttonId: `.owner`,
          buttonText: {
-                  displayText: 'GROUP INFO'
+                  displayText: 'OWNER'
                },
                type: 1
             }, {
@@ -200,7 +200,7 @@ const connect = async () => {
          if (groupSet.left) client.sendMessageModify(gc.id, txt, null, {
             largeThumb: true,
             thumbnail: pic,
-            url: 'https://chat.whatsapp.com/EARvthLENgw2yxhDUKDuMr'
+            url: 'https://chat.whatsapp.com/CmJkktfVp0H2Gl4v11VOLW'
          })
       }
    })
