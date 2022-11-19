@@ -11,7 +11,7 @@ exports.run = {
          let buttons = [{
             urlButton: {
                displayText: `sewa bot`,
-               url: `https://wa.me/62882002088799?text=topup+bang`
+               url: `https://wa.me/6287823406145?text=Haii+Ganteng`
             }
          }]
          if (/image/.test(m.quoted.mtype)) {
