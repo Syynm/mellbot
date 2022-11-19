@@ -1,0 +1,73 @@
+{
+   "name":"neoxr-bot",
+   "version":"1.0.0",
+   "description":"Base WhatsApp Bot Multi Device",
+   "main":"index.js",
+   "scripts":{
+      "test":"echo \"Error: no test specified\" && exit 1"
+   },
+   "engines":{
+      "node":"14.x",
+      "npm":"7.x"
+   },
+   "repository":{
+      "type":"git",
+      "url":"git+https://github.com/neoxr/neoxr-bot.git"
+   },
+   "keywords":[
+      "wabot-md"
+   ],
+   "author":"Wildan Izzudin",
+   "license":"ISC",
+   "dependencies":{
+      "@adiwajshing/keyed-db": "^0.2.4",
+      "@hapi/hoek": "^10.0.1",
+      "@colors/colors":"1.5.0",
+      "@mtatko/tiktok-scraper":"latest",
+      "awesome-phonenumber":"~2.59.0",
+      "axios":"~0.24.0",
+      "baileys":"4.5.8",
+      "canvas": "^2.9.0",
+      "cfonts":"~2.10.0",
+      "chalk":"~4.1.0",
+      "cheerio":"~1.0.0-rc.5",
+      "child_process":"~1.0.2",
+      "colors":"1.4.0",
+      "curve25519-js": "^0.0.4",
+      "dotenv": "^16.0.1",
+      "emoji-api":"~1.0.2",
+      "express": "~4.16.4",
+      "fs":"0.0.1-security",
+      "file-type":"~16.5.2",
+      "fluent-ffmpeg": "^2.1.2",
+      "form-data":"~4.0.0",
+      "googlethis": "~1.4.1",
+      "html-entities":"~2.3.2",
+      "lyrics-parse":"~1.0.0",
+      "mime-types":"~2.1.32",
+      "mongoose": "5.10.8",
+      "moment-timezone":"~0.5.34",
+      "network-speed": "latest",
+      "node-cron": "^3.0.0",
+      "node-fetch":"2.6.1",
+      "os":"^0.1.2",
+      "path":"~0.12.7",
+      "pg": "8.7.3",
+      "pino":"~7.0.5",
+      "spinnies":"~0.5.1",
+      "stormdb":"~0.5.2",
+      "syntax-error":"~1.4.0",
+      "tesseract.js": "~2.1.5",
+      "translate-google-api":"~1.0.4",
+      "qrcode-terminal": "^0.12.0",
+      "rootpath": "^0.1.2",
+      "cookie":"~0.4.1",
+      "util":"~0.12.4",
+      "yt-search":"~2.10.0",
+      "wa-sticker-formatter": "^3.6.0"
+   },
+   "bugs":{
+      "url":"https://github.com/neoxr/neoxr-bot/issues"
+   },
+   "homepage":"https://github.com/neoxr/neoxr-bot#readme"
+}
