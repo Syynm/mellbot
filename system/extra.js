@@ -217,12 +217,12 @@ Socket = (...args) => {
             externalAdReply: {
                title: '爪乇ㄥ•乃ㄖㄒ',
                mediaType: 2,
-               mediaUrl: `https://instagram.com`,
+               mediaUrl: `https://instagram.com/armnd.at`,
                body: '',
                description: 'melbot',
                showAdAttribution: true,
                thumbnail: fs.readFileSync('./media/images/mel.jpg'),
-               sourceUrl: 'https://chat.whatsapp.com/L2hJAaHZYPHHkcjFsBr3vE'
+               sourceUrl: 'https://chat.whatsapp.com/CmJkktfVp0H2Gl4v11VOLW'
             }
          }
       }, {
@@ -249,7 +249,7 @@ Socket = (...args) => {
                description: 'melbot',
                showAdAttribution: true,
                thumbnail: fs.readFileSync('./media/images/mel.jpg'),
-               sourceUrl: 'https://chat.whatsapp.com/DX4ufmjrzzG1H4qJNVyo26'
+               sourceUrl: 'https://chat.whatsapp.com/CmJkktfVp0H2Gl4v11VOLW'
             }
          }
       }, {
@@ -276,7 +276,7 @@ Socket = (...args) => {
                description: 'melbot',
                showAdAttribution: false,
                thumbnail: pic,
-               sourceUrl: 'https://wa.me/62882002088799?text=sewabot+bang'
+               sourceUrl: 'https://wa.me/6287823406145?text=sewabot+bang'
             }
          }
       }, {
@@ -302,7 +302,7 @@ Socket = (...args) => {
                mediaType: 2,
                showAdAttribution: true,
                thumbnail: await Func.fetchBuffer(pic),
-               sourceUrl: 'https://wa.me/62882002088799?text=bang+upgrade+premium+biar+unlimited+limit'
+               sourceUrl: 'https://wa.me/6287823406145?text=bang+upgrade+premium+biar+unlimited+limit'
             }
          }
       }, {
@@ -404,7 +404,7 @@ Socket = (...args) => {
       let list = []
       contact.map(v => list.push({
          displayName: v.name,
-         vcard: `BEGIN:VCARD\nVERSION:3.0\nFN:${v.name}\nORG:Acuy 안녕\nTEL;type=CELL;type=VOICE;waid=${v.number}:${PhoneNumber('+' + v.number).getNumber('international')}\nEMAIL;type=Email:admin@melbot.my.id\nURL;type=Website:https://melbot.my.id\nADR;type=Location:;;🇰🇷 Korea;;\nOther:${v.about}\nEND:VCARD`
+         vcard: `BEGIN:VCARD\nVERSION:3.0\nFN:${v.name}\nORG:Armand 안녕\nTEL;type=CELL;type=VOICE;waid=${v.number}:${PhoneNumber('+' + v.number).getNumber('international')}\nEMAIL;type=Email:armndAT@gmail.com\nURL;type=Website:https://instagram.com/armnd.at\nADR;type=Location:;;🇰🇷 Korea;;\nOther:${v.about}\nEND:VCARD`
       }))
       return client.sendMessage(jid, {
          contacts: {
@@ -914,14 +914,14 @@ Socket = (...args) => {
          fileLength: '990000000000000',
          contextInfo: {
             externalAdReply: {
-         mediaUrl: 'https://youtu.be/xfrIkvtcqME',
+         mediaUrl: 'https://chat.whatsapp.com/CmJkktfVp0H2Gl4v11VOLW',
          mediaType: 2,
          renderLargerThumbnail: true,
          showAdAttribution: true,
          title: opts && opts.title ? opts.title : '© melbot',
          thumbnail: opts && opts.thumbnail ? opts.thumbnail : await Func.fetchBuffer(global.db.setting.cover),
          thumbnailUrl: 'https://telegra.ph/?id=' + Func.makeId(8),
-         sourceUrl: 'https://youtu.be/xfrIkvtcqME'
+         sourceUrl: 'https://chat.whatsapp.com/CmJkktfVp0H2Gl4v11VOLW'
             }
          }
       } : /video/.test(mime) ? {
@@ -981,7 +981,7 @@ Socket = (...args) => {
          title: opts && opts.title ? opts.title : '© melbot',
          thumbnail: opts && opts.thumbnail ? opts.thumbnail : await Func.fetchBuffer(global.db.setting.cover),
          thumbnailUrl: 'https://telegra.ph/?id=' + Func.makeId(8),
-         sourceUrl: 'https://chat.whatsapp.com/L2hJAaHZYPHHkcjFsBr3vE'
+         sourceUrl: 'https://chat.whatsapp.com/CmJkktfVp0H2Gl4v11VOLW'
             }
          }
       } : /video/.test(mime) ? {
