@@ -1,6 +1,6 @@
 // Symbols that are excluded when adding a prefix (Don't change it)
 global.evaluate_chars = ['=>', '~>', '~', '>', '$']
-global.owner = '85807264974'
+global.owner = '6287823406145'
 global.resetTime = 180000 // 5 Jam
 global.limit = 10 // limit default
 global.max_upload = 200 // 200MB (1 = 1MB)
