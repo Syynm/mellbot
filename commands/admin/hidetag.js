@@ -7,7 +7,7 @@ exports.run = {
       command,
       participants
    }) => {
-      if (!text) return client.reply(m.chat, Func.example(isPrefix, command, 'kontol'), m)
+      if (!text) return client.reply(m.chat, Func.example(isPrefix, command, 'ah ah'), m)
       let member = participants.map(v => v.id)
       client.reply(m.chat, text, null, {
                mentions: member
