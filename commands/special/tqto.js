@@ -19,6 +19,8 @@ let info = () => {
 
 ➠ armand 
 
+➠ diox
+
 ➠ wildan Izzuddin  
 
 ➠ acuy
