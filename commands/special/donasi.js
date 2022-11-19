@@ -22,8 +22,8 @@ let info = () => {
 ┃
 ┃Bagi Anda yang memiliki saldo lebih
 ┃bisa di donasikan melalui berikut ini.
-┃
-┃P U L S A : [ 0851-5697-2228 ]
+┃VIA DANA-PULSA-OVO
+┃  [082283541084 ]
 ┗⬣
 
 note : *donasi seikhlasnya aja*`
