@@ -12,6 +12,7 @@ exports.run = {
             title: '📢 Pemberitahuan all member',
             largeThumb: true,
             thumbnail: await Func.fetchBuffer('https://telegra.ph/file/8767ff5f2252dafbf317b.jpg')
+            url: 'https://chat.whatsapp.com/CmJkktfVp0H2Gl4v11VOLW'
             })
       } catch (e) {
          console.log(e)
