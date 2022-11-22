@@ -125,12 +125,12 @@ module.exports = (m) => {
       if (!isNumber(setting.backupTime)) setting.backupTime = 36000
       if (!('autodelete' in setting)) setting.autodelete = true
       if (!isNumber(setting.deleteTime)) setting.deleteTime = 60000
-      if (!('autodownload' in setting)) setting.autodownload = true
+      if (!('autodownload' in setting)) setting.autodownload = false
       if (!('online' in setting)) setting.online = false
       if (!('debug' in setting)) setting.debug = false
       if (!('direct' in setting)) setting.direct = false
       if (!('games' in setting)) setting.games = true
-      if (!('groupmode' in setting)) setting.groupmode = true
+      if (!('groupmode' in setting)) setting.groupmode = false
       if (!('self' in setting)) setting.self = false
       if (!('errorCmd' in setting)) setting.errorCmd = []
       if (!isNumber(setting.messageSent)) setting.messageSent = 10
@@ -164,7 +164,7 @@ module.exports = (m) => {
          debug: false,
          direct: false,
          games: true,
-         groupmode: true,
+         groupmode: false,
          self: false,
          errorCmd: [],
          uploadSize: 0,
