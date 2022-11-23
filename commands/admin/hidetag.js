@@ -1,5 +1,5 @@
 exports.run = {
-   usage: ['hidetag'],
+   usage: ['hidetag','h'],
    async: async (m, {
       client,
       text,
