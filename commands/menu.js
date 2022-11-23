@@ -34,56 +34,41 @@ exports.run = {
                     displayText: 'DONASI'
             },
             type: 1
-            },
-            {
-                 buttonId: `${isPrefix}sc`,
-                 buttonText: {
-                    displayText: 'SCRIPT'
-            },
-            type: 1
             }]
-            let buttons = [{
-               urlButton: {
-                        displayText: `OWNER`,
-                        url: `https://wa.me/6287823406145`
+                     quickReplyButton: {
+                        displayText: 'Owner',
+                        id: `${isPrefix}owner`
                      }
                   },
                   {
                      quickReplyButton: {
                         displayText: 'DONASI',
-                        id: `${isPrefix}dnsiii`
-                     }
-                  },
-                  {
-                     quickReplyButton: {
-                        displayText: 'PREMIUM',
-                        id: `${isPrefix}premium`
+                        id: `${isPrefix}donasi`
                      }
                   }
                ]
             if (menuType == 1) {
                client.menu[id] = [
-                  await client.fakeGroupLink(m.chat, await menu(m, readmore, global.db.setting, isPrefix), global.db.setting.header, m.sender, m),
+                  await client.sendMessageModify2(m.chat, await menu(m, readmore, global.db.setting, isPrefix), m, {
+            largeThumb: true,
+            thumbnail: global.db.setting.cover
+            }),
                   setTimeout(() => {
                      delete client.menu[id]
                   }, 180000)
                ]
             } else if (menuType == 2) {
                client.menu[id] = [
-                  await client.sendButton(m.chat, global.db.setting.cover, await menu(m, readmore, global.db.setting, isPrefix),'© Powered By NuxL-Bot', null, button, {
+                  await client.sendButton(m.chat, global.db.setting.cover, await menu(m, readmore, global.db.setting, isPrefix), '', null, button, {
                     document: true
             }, {
-                title: 'ılılılllıılılıllllıılılllıllı\nNuxL-Bot',
                 thumbnail: await Func.fetchBuffer(global.db.setting.cover),
-                fileName: `Berjalan : ${Func.toTime(process.uptime() * 1000)}\nVersion [ 0.0.5 ]`
-            }),
-                  setTimeout(() => {
-                     delete client.menu[id]
-                  }, 180000)
+                fileName: Func.greeting(m.pushName)
+            })
                ]
             } else if (menuType == 3) {
                client.menu[id] = [
-                  await client.sendTemplateButton(m.chat, global.db.setting.cover, await menu(m, readmore, global.db.setting, isPrefix), '© Powered By NuxL-Bot', buttons, {
+                  await client.sendTemplateButton(m.chat, global.db.setting.cover, await menu(m, readmore, global.db.setting, isPrefix), '                       Ⓟ premium | Ⓛ limit', buttons, {
                      document: true,
                      name: '𝘞𝘩𝘢𝘵𝘴𝘈𝘱𝘱 𝘉𝘰𝘵'
                   }),
@@ -93,7 +78,7 @@ exports.run = {
                ]
             } else if (menuType == 4) {
                client.menu[id] = [
-                  await client.sendTemplateButton(m.chat, global.db.setting.cover, await menu(m, readmore, global.db.setting, isPrefix), '© By Powered NuxL-Bot ', buttons, {
+                  await client.sendTemplateButton(m.chat, global.db.setting.cover, await menu(m, readmore, global.db.setting, isPrefix), '                       ワッツアップ ', buttons, {
                      location: true
                   }),
                   setTimeout(() => {
@@ -102,7 +87,7 @@ exports.run = {
                ]
             } else if (menuType == 5) {
                client.menu[id] = [
-                  await client.sendTemplateButton(m.chat, await Func.fetchBuffer('./media/video/video.mp4'), await menu(m, readmore, global.db.setting, isPrefix), '© By Powered NuxL-Bot', buttons, {
+                  await client.sendTemplateButton(m.chat, await Func.fetchBuffer('./media/video/video.mp4'), await menu(m, readmore, global.db.setting, isPrefix), '                         Ⓟ premium | Ⓛ limit', buttons, {
                      gif: true
                   }),
                   setTimeout(() => {
@@ -111,14 +96,14 @@ exports.run = {
                ]
             } else if (menuType == 6) {
                client.menu[id] = [
-                  await client.sendTemplateButton(m.chat, global.db.setting.cover, await menu(m, readmore, global.db.setting, isPrefix), '© By Powered NuxL-Bot', buttons),
+                  await client.sendTemplateButton(m.chat, global.db.setting.cover, await menu(m, readmore, global.db.setting, isPrefix), '                       Ⓟ premium | Ⓛ limit', buttons),
                   setTimeout(() => {
                      delete client.menu[id]
                   }, 180000)
                ]
             } else if (menuType == 7) {
                client.menu[id] = [
-                  await client.sendTemplateButton(m.chat, await Func.fetchBuffer('./media/video/video.mp4'), await menu(m, readmore, global.db.setting, isPrefix), '© By Powered NuxL-Bot', buttons),
+                  await client.sendTemplateButton(m.chat, await Func.fetchBuffer('./media/video/video.mp4'), await menu(m, readmore, global.db.setting, isPrefix), '                         Ⓟ premium | Ⓛ limit', buttons),
                   setTimeout(() => {
                      delete client.menu[id]
                   }, 180000)
@@ -137,7 +122,7 @@ exports.run = {
             		rowId: `${isPrefix}submenu 3`,
             		description: ``
             	}, {
-            		title: '𝗥𝗔𝗡𝗗𝗢𝗠 𝗜𝗠𝗔𝗚𝗘',
+            		title: '𝗥𝗔𝗡𝗗𝗢𝗠 𝗜𝗠𝗔𝗚𝗘',
             		rowId: `${isPrefix}submenu 4`,
             		description: ``
             	}, {
@@ -165,7 +150,7 @@ exports.run = {
             		rowId: `${isPrefix}submenu 10`,
             		description: ``
             	}]
-            	await client.sendList(m.chat, '', `Hai ${m.pushName || Beib} 🏅\n\n“${setting.msg}”\n\nUntuk bisa menggunakan bot di personal chat (PC) kamu harus  upgrade ke premium user\nJika ingin upgrade ke premium silahkan ketik *.premium*\n\nTap Dibawah Untuk menampilkan list menu `, '', 'Tap!', rows, m)  
+            	await client.sendList(m.chat, '', `Hai ${m.pushName || Beib} 🏅\n\n“${setting.msg}”\n\nUntuk bisa menggunakan bot di personal chat (PC) kamu harus  upgrade ke premium user\nJika ingin upgrade ke premium silahkan ketik *.premium*\n\nTap Dibawah Untuk menampilkan list menu 📮`, '', 'Tap!', rows, m)  
             }
          }
          if (/admintools/.test(command)) return client.fakeStory(m.chat, admin(isPrefix), global.db.setting.header)
@@ -181,7 +166,6 @@ exports.run = {
    cache: true,
    location: __filename
 }
-
 
 const readmore = String.fromCharCode(8206).repeat(4001)
 const menu = async (m, readmore, setting, prefix) => {
