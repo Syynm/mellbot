@@ -34,41 +34,56 @@ exports.run = {
                     displayText: 'DONASI'
             },
             type: 1
+            },
+            {
+                 buttonId: `${isPrefix}sc`,
+                 buttonText: {
+                    displayText: 'SCRIPT'
+            },
+            type: 1
             }]
-                     quickReplyButton: {
-                        displayText: 'Owner',
-                        id: `${isPrefix}owner`
+            let buttons = [{
+               urlButton: {
+                        displayText: `OWNER`,
+                        url: `https://wa.me/6287823406145`
                      }
                   },
                   {
                      quickReplyButton: {
                         displayText: 'DONASI',
-                        id: `${isPrefix}donasi`
+                        id: `${isPrefix}dnsiii`
+                     }
+                  },
+                  {
+                     quickReplyButton: {
+                        displayText: 'PREMIUM',
+                        id: `${isPrefix}premium`
                      }
                   }
                ]
             if (menuType == 1) {
                client.menu[id] = [
-                  await client.sendMessageModify2(m.chat, await menu(m, readmore, global.db.setting, isPrefix), m, {
-            largeThumb: true,
-            thumbnail: global.db.setting.cover
-            }),
+                  await client.fakeGroupLink(m.chat, await menu(m, readmore, global.db.setting, isPrefix), global.db.setting.header, m.sender, m),
                   setTimeout(() => {
                      delete client.menu[id]
                   }, 180000)
                ]
             } else if (menuType == 2) {
                client.menu[id] = [
-                  await client.sendButton(m.chat, global.db.setting.cover, await menu(m, readmore, global.db.setting, isPrefix), '', null, button, {
+                  await client.sendButton(m.chat, global.db.setting.cover, await menu(m, readmore, global.db.setting, isPrefix),'© Powered By NuxL-Bot', null, button, {
                     document: true
             }, {
+                title: 'ılılılllıılılıllllıılılllıllı\nNuxL-Bot',
                 thumbnail: await Func.fetchBuffer(global.db.setting.cover),
-                fileName: Func.greeting(m.pushName)
-            })
+                fileName: `Berjalan : ${Func.toTime(process.uptime() * 1000)}\nVersion [ 0.0.5 ]`
+            }),
+                  setTimeout(() => {
+                     delete client.menu[id]
+                  }, 180000)
                ]
             } else if (menuType == 3) {
                client.menu[id] = [
-                  await client.sendTemplateButton(m.chat, global.db.setting.cover, await menu(m, readmore, global.db.setting, isPrefix), '                       Ⓟ premium | Ⓛ limit', buttons, {
+                  await client.sendTemplateButton(m.chat, global.db.setting.cover, await menu(m, readmore, global.db.setting, isPrefix), '© Powered By NuxL-Bot', buttons, {
                      document: true,
                      name: '𝘞𝘩𝘢𝘵𝘴𝘈𝘱𝘱 𝘉𝘰𝘵'
                   }),
@@ -78,7 +93,7 @@ exports.run = {
                ]
             } else if (menuType == 4) {
                client.menu[id] = [
-                  await client.sendTemplateButton(m.chat, global.db.setting.cover, await menu(m, readmore, global.db.setting, isPrefix), '                       ワッツアップ ', buttons, {
+                  await client.sendTemplateButton(m.chat, global.db.setting.cover, await menu(m, readmore, global.db.setting, isPrefix), '© By Powered NuxL-Bot ', buttons, {
                      location: true
                   }),
                   setTimeout(() => {
@@ -87,7 +102,7 @@ exports.run = {
                ]
             } else if (menuType == 5) {
                client.menu[id] = [
-                  await client.sendTemplateButton(m.chat, await Func.fetchBuffer('./media/video/video.mp4'), await menu(m, readmore, global.db.setting, isPrefix), '                         Ⓟ premium | Ⓛ limit', buttons, {
+                  await client.sendTemplateButton(m.chat, await Func.fetchBuffer('./media/video/video.mp4'), await menu(m, readmore, global.db.setting, isPrefix), '© By Powered NuxL-Bot', buttons, {
                      gif: true
                   }),
                   setTimeout(() => {
@@ -96,14 +111,14 @@ exports.run = {
                ]
             } else if (menuType == 6) {
                client.menu[id] = [
-                  await client.sendTemplateButton(m.chat, global.db.setting.cover, await menu(m, readmore, global.db.setting, isPrefix), '                       Ⓟ premium | Ⓛ limit', buttons),
+                  await client.sendTemplateButton(m.chat, global.db.setting.cover, await menu(m, readmore, global.db.setting, isPrefix), '© By Powered NuxL-Bot', buttons),
                   setTimeout(() => {
                      delete client.menu[id]
                   }, 180000)
                ]
             } else if (menuType == 7) {
                client.menu[id] = [
-                  await client.sendTemplateButton(m.chat, await Func.fetchBuffer('./media/video/video.mp4'), await menu(m, readmore, global.db.setting, isPrefix), '                         Ⓟ premium | Ⓛ limit', buttons),
+                  await client.sendTemplateButton(m.chat, await Func.fetchBuffer('./media/video/video.mp4'), await menu(m, readmore, global.db.setting, isPrefix), '© By Powered NuxL-Bot', buttons),
                   setTimeout(() => {
                      delete client.menu[id]
                   }, 180000)
@@ -150,7 +165,7 @@ exports.run = {
             		rowId: `${isPrefix}submenu 10`,
             		description: ``
             	}]
-            	await client.sendList(m.chat, '', `Hai ${m.pushName || Beib} 🏅\n\n“${setting.msg}”\n\nUntuk bisa menggunakan bot di personal chat (PC) kamu harus  upgrade ke premium user\nJika ingin upgrade ke premium silahkan ketik *.premium*\n\nTap Dibawah Untuk menampilkan list menu 📮`, '', 'Tap!', rows, m)  
+            	await client.sendList(m.chat, '', `Hai ${m.pushName || Beib} 🏅\n\n“${setting.msg}”\n\nUntuk bisa menggunakan bot di personal chat (PC) kamu harus  upgrade ke premium user\nJika ingin upgrade ke premium silahkan ketik *.premium*\n\nTap Dibawah Untuk menampilkan list menu `, '', 'Tap!', rows, m)  
             }
          }
          if (/admintools/.test(command)) return client.fakeStory(m.chat, admin(isPrefix), global.db.setting.header)
@@ -172,320 +187,267 @@ const menu = async (m, readmore, setting, prefix) => {
    let point = [...new Set(Object.entries(global.db.users).filter(([v, x]) => x.point > 0).map(([v, x]) => x.point))]
    let limit = [...new Set(Object.entries(global.db.users).filter(([v, x]) => x.limit > 0).map(([v, x]) => x.limit))]
    return `${/8|9/.test(global.db.setting.setmenu) ? Func.greeting('@' + m.sender.replace(/@.+/,'')) : Func.greeting(m.pushName || 'Beib')} (Lv. ${Func.level(global.db.users[m.sender].point)[0]})
-Saldo Rp. ${Func.h2k(Func.formatNumber(global.db.users[m.sender].point))}
+Saldo Rp. ${Func.h2k(global.db.users[m.sender].point)}
+*Download* : 80.61 mbps\n❏ *Upload* : 1006.27 mbps\n❏ *Response* : 3365 ms', m)
 
-Im simple WhatsApp bot, *gunakan bot di private chat agar bot dapat merespon dengan cepat.*
-
-◦ *Database* : Multi Database
-◦ *Received* : ${Func.texted('bold', await Func.getSize(global.db.setting.receiveSize))}
-◦ *Upload* : ${Func.texted('bold', await Func.getSize(global.db.setting.uploadSize))}
-◦ *Runtime* : ${Func.toTime(process.uptime() * 1000)}
-◦ *Mode* : ${setting.groupmode ? '*Khusus Group*' : '*Public*'}
-
-Jika Anda menemukan kesalahan atau ingin meningkatkan paket premium, hubungi owner!
+Mode : ${setting.groupmode ? '*Khusus Group*' : '*Public*'}
 ${readmore}
-❏  *P O I N T & L I M I T*
+乂 ​𝗨𝗔𝗡𝗚 & 𝗟𝗜𝗠𝗜𝗧
+ × ​ .​buy
+ × ​ .​buyguard
+ × ​ .​claim
+ × ​ .​guard
+ × ​ .​transfer *@tag* nominal
+ × ​ .​limit
+ × ​ .​me
+ × ​ .​point
+ × ​ .​profile
+ × ​ .​toplocal
+ × ​ .​topglobal
+ × ​ .​topuser
+ × ​ .​topuserlocal 
 
-	◦  ${prefix}buy
-	◦  ${prefix}buyguard
-	◦  ${prefix}claim
-	◦  ${prefix}guard
-	◦  ${prefix}transfer *@tag* nominal
-	◦  ${prefix}limit
-	◦  ${prefix}me
-	◦  ${prefix}point
-	◦  ${prefix}profile
-	◦  ${prefix}toplocal
-	◦  ${prefix}topglobal
-	◦  ${prefix}topuser
-	◦  ${prefix}topuserlocal 
-	
-❏  *I M A G E - E F F E C T*
-
-	◦  ${prefix}alien
-	◦  ${prefix}brick
-	◦  ${prefix}bunny
-	◦  ${prefix}caricature
-	◦  ${prefix}clown
-	◦  ${prefix}ink
-	◦  ${prefix}latte
-	◦  ${prefix}letter
-	◦  ${prefix}pencil
-	◦  ${prefix}puzzle
-	◦  ${prefix}roses
-	◦  ${prefix}sketch
-	◦  ${prefix}splash
-	◦  ${prefix}staco	
-
-❏  *S E A R C H*
-
-	◦  ${prefix}alquran
-	◦  ${prefix}whatanime
-	◦  ${prefix}wattpad *judul*
-	◦  ${prefix}drakor *judul*
-	◦  ${prefix}anime *judul*
-	◦  ${prefix}film *judul*
-	◦  ${prefix}google <query>
-	◦  ${prefix}githubstalk
-	◦  ${prefix}igstalk
-	◦  ${prefix}ytsearch <query> 
-	◦  ${prefix}whatmusic <caption / reply> 
+乂 𝗦𝗘𝗔𝗥𝗖𝗛
+ × ​ .alquran
+ × ​ .​whatanime
+ × ​ .​wattpad *judul*
+ × ​ .​drakor *judul*
+ × ​ .​anime *judul*
+ × ​ .​film *judul*
+ × ​ .​google <query>
+ × ​ .​githubstalk
+ × ​ .igstalk
+ × ​ .​ytsearch <query> 
+ × ​ .​whatmusic <caption / reply> 
   
-❏  *F U N - G A M E*
+乂 ​𝗙𝗨𝗡 𝗚𝗔𝗠𝗘
+ × ​ .​attack
+ × ​ .​adventure
+ × ​ .​barbar
+ × ​ .​brainout
+ × ​ .​coin *A* / *B*
+ × ​ .​math *mode*
+ × ​ .​riddle
+ × ​ .​slot
+ × ​ .​spin *point*
+ × ​ .​ttt
+ × ​ .​ttt *room*
+ × ​ .​tictactoe
+ × ​ .​tebaklirik
+ × ​ .​tebaktebakan
+ × ​ .​caklontong
+ × ​ .​whatsong
+ × ​ .​whatword
+ × ​ .​whoami
+ × ​ .​truth
+ × ​ .​dare
+ × ​ .​apakah
+ × ​ .​kapankah
+ × ​ .​siapakah
+ × ​ .​susunkata 
+ × ​ .​tebakkata
+ × ​ .​tebakbom
+ × ​ .​tebakgambar 
+  
+乂 ​𝗥𝗔𝗡𝗗𝗢𝗠 𝗜𝗠𝗔𝗚𝗘 
+ × ​ .​loli
+ × ​ .​waifu 
+ × ​ .ahegao
+ × ​ .ass
+ × ​ .bdsm
+ × ​ .blowjob
+ × ​ .cuckold
+ × ​ .cum
+ × ​ .ero
+ × ​ .femdom
+ × ​ .foot
+ × ​ .gangbang
+ × ​ .glasses
+ × ​ .hentaigifs
+ × ​ .jahy
+ × ​ .manga
+ × ​ .masturbation
+ × ​ .nsfwNeko
+ × ​ .orgy
+ × ​ .pussy
+ × ​ .yuri
 
-	◦  ${prefix}attack
-	◦  ${prefix}adventure
-	◦  ${prefix}barbar
-	◦  ${prefix}brainout
-	◦  ${prefix}coin *A* / *B*
-	◦  ${prefix}math *mode*
-	◦  ${prefix}riddle
-	◦  ${prefix}slot
-	◦  ${prefix}spin *point*
-	◦  ${prefix}ttt
-	◦  ${prefix}ttt *room*
-	◦  ${prefix}tictactoe
-	◦  ${prefix}tebaklirik
-	◦  ${prefix}tebaktebakan
-	◦  ${prefix}caklontong
-	◦  ${prefix}whatsong
-	◦  ${prefix}whatword
-	◦  ${prefix}whoami
-	◦  ${prefix}truth
-	◦  ${prefix}dare
-	◦  ${prefix}apakah
-	◦  ${prefix}kapankah
-	◦  ${prefix}siapakah
-	◦  ${prefix}susunkata 
-	◦  ${prefix}tebakkata
-	◦  ${prefix}tebakbom
-	◦  ${prefix}tebakgambar 
+乂  𝗢𝗧𝗛𝗘𝗥
+ × ​ .​sadboy
+ × ​ .​sadgirl
+ × ​ .​bucin
+ × ​ .​senja
+ × ​ .​fakta
+ × ​ .​tag *text*
+ × ​ .​tagme
+ × ​ .​wame *text*
+ × ​ .​react *emoji*
+ × ​ .​artinama *nama*
+ × ​ .​artinama2 *nama* 	
+ × ​ .​urban *word*
+ × ​ .​sindiran
+ × ​ .​kataanime
+ × ​ .​desahancewek
+ × ​ .​desahancowok
+  
+乂 𝗖𝗢𝗡𝗩𝗘𝗥𝗧𝗘𝗥
+ × ​ .​toimg <reply> 
+ × ​ .tomp4 <reply> 
+ × ​ .​ocr 
+ × ​ .​tourl <caption / reply> 
+ × ​ .​tovn *reply audio* 
+ × ​ .​short ​<url> 
  
-❏  *S O S M E D - S H O P*
+乂 ​𝗦𝗧𝗜𝗖𝗞𝗘𝗥
+ × ​ .​emo *emoticon*
+ × ​ .​emojimix
+ × ​ .​flat *emoticon*
+ × ​ .​smeme *text | text*
+ × ​ .​sticker/s/sk	
+ × ​ .​swm *pack | author*
 
-	◦  .panel
-	◦  .panel2
-
-❏  *T E X T - M A K E R*
-
-	◦  .blackpink
-	◦  .blood
-	◦  .breakwall
-	◦  .glow
-	◦  .joker
-	◦  .magma
-	◦  .matrix
-	◦  .multicolor
-	◦  .neon
-	◦  .papercut
-	◦  .slice	 
+乂 𝗗𝗢𝗪𝗡𝗟𝗢𝗔𝗗𝗘𝗥
+ × ​ .​play <query> 
+ × ​ .​alquran 
+ ×  .wallpaper <query>
+ × ​ .​ig ​<url>	
+ × ​ .​igstory *username*
+ × ​ .​mediafire ​<url>
+ × ​ .​asupan *request* / *hastag*
+ × ​ .​bokep
+ × ​ .​ometv
+ × ​ .​viral 
+ × ​ .​fb ​<url>
+ × ​ .​pin ​<url>	
+ × ​ .​apk <query>
+ × ​ .​pinterest <query>	
+ × ​ .​sticker <query>
+ × ​ .​tiktok ​<url>
+ × ​ .​tikmp3 ​<url>
+ × ​ .​tikwm ​<url>
+ × ​ .​twitter ​<url>
+ × ​ .​video <query>
+ × ​ .​ythd ​<url>
+ × ​ .​ytmp3 ​<url>
+ × ​ .​ytmp4 ​<url>
+ × ​ .​twitter <url> 
+ × ​ .​tiktok <url> 
+ × ​ .​nhentaipdf <code> 
+ × ​ .​pinterest <query / url> 
+ × ​ .​soundcloud <query / url> 
   
-❏  *N S F W* 
-
-	◦  .loli
-	◦  .waifu 
-	◦  ${prefix}ahegao
-	◦  ${prefix}ass
-	◦  ${prefix}bdsm
-	◦  ${prefix}blowjob
-	◦  ${prefix}cuckold
-	◦  ${prefix}cum
-	◦  ${prefix}ero
-	◦  ${prefix}femdom
-	◦  ${prefix}foot
-	◦  ${prefix}gangbang
-	◦  ${prefix}glasses
-	◦  ${prefix}hentaigifs
-	◦  ${prefix}jahy
-	◦  ${prefix}manga
-	◦  ${prefix}masturbation
-	◦  ${prefix}nsfwNeko
-	◦  ${prefix}orgy
-	◦  ${prefix}pussy
-	◦  ${prefix}yuri
-
-❏  *O T H E R*
-
-	◦  ${prefix}sadboy
-	◦  ${prefix}sadgirl
-	◦  ${prefix}bucin
-	◦  ${prefix}senja
-	◦  ${prefix}fakta
-	◦  ${prefix}tag *text*
-	◦  ${prefix}tagme
-	◦  ${prefix}wame *text*
-	◦  ${prefix}react *emoji*
-	◦  ${prefix}artinama *nama*
-	◦  ${prefix}artinama2 *nama* 	
-	◦  ${prefix}urban *word*
-	◦  ${prefix}sindiran
-	◦  ${prefix}kataanime
-	◦  ${prefix}desahancewek
-	◦  ${prefix}desahancowok
+乂 𝗚𝗥𝗢𝗨𝗣
+ × ​ .​link 
+ × ​ .​leave 
+ × ​ .​revoke
+ × ​ .​afk *alasan* 
+ × ​ .​pacaran
+ × ​ .​groupinfo
+ × ​ .​tagall [teks] 
+ × ​ .​hidetag [teks] 
+ × ​ .​group [option] 
+ × ​ .​mute
+ × ​ .​tagall
+ × ​ .​hidetag
+ × ​ .​kick
+ × ​ .​demote
+ × ​ .​mark
+ × ​ .​unmark
+ × ​ .​revoke
+ × ​ .​absen
+ × ​ .​link
+ × ​ .​sider
+ × ​ .​kicksider
+ ×  .anti212
+ × ​ .​antilink *on / off*
+ × ​ .​antivirtex *on / off*
+ × ​ .​filter *on / off*
+ × ​ .​game *on / off*
+ × ​ .​localonly *on / off*
+ × ​ .​left *on / off*
+ × ​ .​notify *on / off*
+ × ​ .​protect *on / off*
+ × ​ .​welcome *on / off*
+ × ​ .​group *close / open*
+ × ​ .​contact *@tag*
+ × ​ .​setdesc *text*
+ × ​ .​setname *text*
+ × ​ .​textwel *text*
+ × ​ .​textleft *text*
+ × ​ .​demote <@tag / reply> 
+ × ​ .​setppgrup 
   
-❏  *C O N V E R T E R*
-
-	◦  ${prefix}toimg <reply> 
-	◦  ${prefix}tomp4 <reply> 
-	◦  ${prefix}ocr 
-	◦  ${prefix}tourl <caption / reply> 
-	◦  ${prefix}tovn *reply audio* 
-	◦  ${prefix}short ​<url> 
- 
-❏  *S T I C K E R*
-
-	◦  ${prefix}emo *emoticon*
-	◦  ${prefix}emojimix
-	◦  ${prefix}flat *emoticon*
-	◦  ${prefix}smeme *text | text*
-	◦  ${prefix}sticker/s/sk	
-	◦  ${prefix}swm *pack | author*
-
-❏  *D O W N L O A D E R*
-	◦  ${prefix}play <query> 
-	◦  ${prefix}alquran 
-	◦  ${prefix}wallpaper <query>
-	◦  ${prefix}ig ​<url>	
-	◦  ${prefix}igstory *username*
-	◦  ${prefix}mediafire ​<url>
-	◦  ${prefix}asupan *request* / *hastag*
-	◦  ${prefix}bokep
-	◦  ${prefix}ometv
-	◦  ${prefix}viral 
-	◦  ${prefix}fb ​<url>
-	◦  ${prefix}pin ​<url>	
-	◦  ${prefix}apk <query>
-	◦  ${prefix}pinterest <query>	
-	◦  ${prefix}sticker <query>
-	◦  ${prefix}tiktok ​<url>
-	◦  ${prefix}tikmp3 ​<url>
-	◦  ${prefix}tikwm ​<url>
-	◦  ${prefix}twitter ​<url>
-	◦  ${prefix}video <query>
-	◦  ${prefix}ythd ​<url>
-	◦  ${prefix}ytmp3 ​<url>
-	◦  ${prefix}ytmp4 ​<url>
-	◦  ${prefix}twitter <url> 
-	◦  ${prefix}tiktok <url> 
-	◦  ${prefix}nhentaipdf <code> 
-	◦  ${prefix}pinterest <query / url> 
-	◦  ${prefix}soundcloud <query / url> 
+乂 𝗠𝗜𝗦𝗖
+ ×   cekprefix 
+ × ​ .​rvo *reply view once* 
+ × ​ .​ping 
+ × ​ .​runtime 
+ × ​ .​listgroup 
+ × ​ .​get <url> 
+ × ​ .​res <url> 
+ × ​ .​translate *id text* 
+ × ​ .​ssweb <url> 
+ ×  ​.​sshp <url> 
+ × ​ .​delete <reply> 
   
-❏  *K H U S U S - G R O U P*
-
-	◦  ${prefix}link 
-	◦  ${prefix}leave 
-	◦  ${prefix}revoke
-	◦  ${prefix}afk *alasan* 
-	◦  ${prefix}pacaran
-	◦  ${prefix}groupinfo
-	◦  ${prefix}tagall [teks] 
-	◦  ${prefix}hidetag [teks] 
-	◦  ${prefix}group [option] 
-	◦  ${prefix}mute
-	◦  ${prefix}tagall
-	◦  ${prefix}hidetag
-	◦  ${prefix}kick
-	◦  ${prefix}demote
-	◦  ${prefix}mark
-	◦  ${prefix}unmark
-	◦  ${prefix}revoke
-	◦  ${prefix}absen
-	◦  ${prefix}link
-	◦  ${prefix}sider
-	◦  ${prefix}kicksider
-	◦  ${prefix}anti212
-	◦  ${prefix}antilink *on / off*
-	◦  ${prefix}antivirtex *on / off*
-	◦  ${prefix}filter *on / off*
-	◦  ${prefix}game *on / off*
-	◦  ${prefix}localonly *on / off*
-	◦  ${prefix}left *on / off*
-	◦  ${prefix}notify *on / off*
-	◦  ${prefix}protect *on / off*
-	◦  ${prefix}welcome *on / off*
-	◦  ${prefix}group *close / open*
-	◦  ${prefix}contact *@tag*
-	◦  ${prefix}setdesc *text*
-	◦  ${prefix}setname *text*
-	◦  ${prefix}textwel *text*
-	◦  ${prefix}textleft *text*
-	◦  ${prefix}demote <@tag / reply> 
-	◦  ${prefix}setppgrup 
-  
-❏  *M I S C*
-
-	◦  ${prefix}cekprefix 
-	◦  ${prefix}rvo *reply view once* 
-	◦  ${prefix}ping 
-	◦  ${prefix}runtime 
-	◦  ${prefix}listgroup 
-	◦  ${prefix}get <url> 
-	◦  ${prefix}res <url> 
-	◦  ${prefix}translate *id text* 
-	◦  ${prefix}ssweb <url> 
-	◦  ${prefix}sshp <url> 
-	◦  ${prefix}delete <reply> 
-  
-❏  *O W N E R*
-
-    ◦   $ 
-    ◦   > / >> 
-	◦  ${prefix}oautodownload *on / off*
-	◦  ${prefix}oantilink *on / off*
-	◦  ${prefix}oantivirtex *on / off*
-	◦  ${prefix}ofilter *on / off*
-	◦  ${prefix}ogame *on / off*
-	◦  ${prefix}olocalonly *on / off*
-	◦  ${prefix}oleft *on / off*
-	◦  ${prefix}onotify *on / off*
-	◦  ${prefix}oprotect *on / off*
-	◦  ${prefix}omute *1 / 0*
-	◦  ${prefix}ohidetag *text*
-	◦  ${prefix}oleave
-	◦  ${prefix}okick *reply / mention*
-	◦  ${prefix}otagall *text*
-	◦  ${prefix}owelcome
-	◦  ${prefix}addown
-	◦  ${prefix}delown
-	◦  ${prefix}addmod
-	◦  ${prefix}delmod
-	◦  ${prefix}listcmd
-	◦  ${prefix}setcmd 
-	◦  ${prefix}delcmd
-	◦  ${prefix}setprefix *prefix*
-	◦  ${prefix}setmsg *text*
-	◦  ${prefix}setcover *reply foto*
-	◦  ${prefix}setheader *text*
-	◦  ${prefix}setfooter *text*
-	◦  ${prefix}setlink 
-	◦  ${prefix}backup
-	◦  ${prefix}ban
-	◦  ${prefix}bcgc
-	◦  ${prefix}block
-	◦  ${prefix}db
-	◦  ${prefix}unblock
-	◦  ${prefix}unban
-	◦  ${prefix}omark
-	◦  ${prefix}ounmark
-	◦  ${prefix}spamtag
-	◦  ${prefix}addlist
-	◦  ${prefix}getlist
-	◦  ${prefix}dellist
-	◦  ${prefix}self 
-	◦  ${prefix}public 
-	◦  ${prefix}restart 
-	◦  ${prefix}join <url> 
-	◦  ${prefix}setprefix [prefix] 
-	◦  ${prefix}setppbot <caption / reply / url>
-	◦  ${prefix}setmenu
-	◦  ${prefix}storage
-	◦  ${prefix}check
-	◦  ${prefix}stat
-	◦  ${prefix}groups
-	◦  ${prefix}list
-	◦  ${prefix}tools`}
-
+乂 𝗢𝗪𝗡𝗘𝗥
+ ×   $ 
+ ×   > / >> 
+ × ​ .​oautodownload *on / off*
+ × ​ .​oantilink *on / off*
+ × ​ .​oantivirtex *on / off*
+ × ​ .​ofilter *on / off*
+ × ​ .​ogame *on / off*
+ × ​ .​olocalonly *on / off*
+ × ​ .​oleft *on / off*
+ × ​ .​onotify *on / off*
+ × ​ .​oprotect *on / off*
+ × ​ .​omute *1 / 0*
+ × ​ .​ohidetag *text*
+ × ​ .​oleave
+ × ​ .​okick *reply / mention*
+ × ​ .​otagall *text*
+ × ​ .​owelcome
+ × ​ .​addown
+ × ​ .​delown
+ × ​ .​addmod
+ × ​ .​delmod
+ × ​ .​listcmd
+ × ​ .​setcmd 
+ × ​ .​delcmd
+ × ​ .setprefix *prefix*
+ × ​ .setmsg *text*
+ × ​ .setcover *reply foto*
+ × ​ .setheader *text*
+ × ​ .setfooter *text*
+ ​×  .setlink 
+ × ​ .​backup
+ × ​ .​ban
+ × ​ .​bcgc
+ × ​ .​block
+ × ​ .​db
+ × ​ .​unblock
+ × ​ .​unban
+ × ​ .​omark
+ × ​ .​ounmark
+ × ​ .​spamtag
+ × ​ .​addlist
+ × ​ .​getlist
+ × ​ .​dellist
+ × ​ .​self 
+ × ​ .​public 
+ × ​ .​restart 
+ × ​ .​join <url> 
+ × ​ .​setprefix [prefix] 
+ × ​ .​setppbot <caption / reply / url>
+ × ​ .​setmenu
+ × ​ .​storage
+ × ​ .​check
+ × ​ .​stat
+ × ​ .​groups
+ × ​ .​list
+ × ​ .​tools`}
+           
 const admin = (prefix) => {
    return `❏  *GROUP SETTING*
 
