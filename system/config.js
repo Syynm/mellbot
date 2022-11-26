@@ -2,7 +2,7 @@
 global.evaluate_chars = ['=>', '~>', '~', '>', '$']
 global.owner = '6287823406145'
 global.resetTime = 180000 // 5 Jam
-global.limit = 10 // limit default
+global.limit = 1000 // limit default
 global.max_upload = 200 // 200MB (1 = 1MB)
 global.status = {
    wait: Func.texted('bold', 'Tunggu sebentar . . .'),
