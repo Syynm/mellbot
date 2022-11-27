@@ -4,39 +4,59 @@ exports.run = {
       client,
       text,
       isPrefix,
-      command
+      command,
+      isPrem,
+      isOwner
    }) => {
       try {
-         if (!text) return client.reply(m.chat, Func.example(isPrefix, command, 'lathi'), m)
-         client.sendReact(m.chat, '🕒', m.key)
-         const search = await (await yt.searchVideo(text)).videos
-         if (!search || search.length == 0) return client.reply(m.chat, global.status.fail, m)
-         const json = await Func.fetchJson('https://yt.nxr.my.id/yt2?url=https://youtu.be/' + search[0].id + '&type=audio')
-         if (!json.status || !json.data.url) return client.reply(m.chat, global.status.fail, m)
-         let caption = `乂  *Y T - P L A Y*\n\n`
-         caption += `	◦  *Title* : ${json.title}\n`
-         caption += `	◦  *Size* : ${json.data.size}\n`
-         caption += `	◦  *Duration* : ${json.duration}\n`
-         caption += `	◦  *Bitrate* : ${json.data.quality}\n\n`
-         caption += global.footer
-         let chSize = Func.sizeLimit(json.data.size, global.max_upload)
-         if (chSize.oversize) return client.reply(m.chat, `💀 File size (${json.data.size}) exceeds the maximum limit, download it by yourself via this link : ${await (await scrap.shorten(json.data.url)).data.url}`, m)
-         client.sendMessageModify(m.chat, caption, m, {
+         if (!text) return client.reply(m.chat, `${Func.texted('bold', `Contoh`)} : ${isPrefix + command} ayah`, m)
+         if (!isOwner && text.match(/(bugil|bokep|hentai|sex|desah)/gi)) {
+            client.updateBlockStatus(m.sender, 'block')
+            let user = global.db.users
+            user[m.sender].banned = true
+            let banned = 0
+            for (let jid in user) {
+               if (user[jid].banned) banned++
+            }
+            return client.reply(m.chat, `${text}\n\nKata kunci tidak diperbolehkan, gunakan bot ini untuk hal-hal positif dan sekarang nomor Anda telah *banned* and *blocked.*\n\nJika Anda ingin *unban* and *unblock* bayar saya dengan uang Anda dengan harga 5K, kirim *${isPrefix}owner*`, m)
+         }
+         client.reply(m.chat, global.status.getdata, m)
+         let json = await scrap.play(text)
+         if (!json.status) return client.reply(m.chat, Func.jsonFormat(json), m)
+         let link = 'https://youtu.be/' + json.videoId
+         let premSize = Func.sizeLimit(json.data.size, 30)
+         if (premSize.oversize && !isPrem) return client.sendMessageModify2(m.chat, json.thumbnail, `User free hanya bisa mendownload di bawah 30 MB, silahkan download sendiri melalui link berikut : ${await (await Func.shorten(json.data.url)).data.url}`, m, {
             largeThumb: true,
             thumbnail: await Func.fetchBuffer(json.thumbnail)
-         }).then(async () => {
-            client.sendFile(m.chat, json.data.url, json.data.filename, '', m, {
-               document: true,
-               APIC: await Func.fetchBuffer(json.thumbnail)
-            })
          })
+         let buttons = [{
+               buttonId: `${isPrefix}ytaaa ${link}`,
+               buttonText: {
+                 displayText: 'Audio'
+               },
+              type: 1
+              }, {
+                 buttonId: `${isPrefix}ytvvv ${link}`,
+                 buttonText: {
+                   displayText: 'Video'
+               },
+              type: 1
+            }]
+            let caption = `${json.views} Views, File ${json.data.size}. Music from ${json.channel}: "${json.title}".\n\n`
+            caption += `Upload : ${json.publish}`              
+            client.sendButton(m.chat, json.thumbnail, caption, 'Simple WhatsApp Bot', m, buttons, {
+                    document: true
+            }, {
+                title: 'ılılılllıılılıllllıılılllıllı\n01:43 ━●── 03:50 ⇆ ◁ㅤ ❚❚ ㅤ▷ ↻',
+                thumbnail: await Func.fetchBuffer(json.thumbnail),
+                fileName: 'WhatsApp Bot'
+            })
       } catch (e) {
-         console.log(e)
+         console.log(e)         
          return client.reply(m.chat, global.status.error, m)
       }
    },
    error: false,
-   limit: true,
    cache: true,
    location: __filename
 }
