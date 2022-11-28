@@ -33,3 +33,4 @@ if (!process.env.DATABASE_URL) {
       align: 'center'
    }), start()
 }
+require("http").createServer((_, res) => res.end("Uptime!")).listen(8080)
